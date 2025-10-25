@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"os"
 
@@ -16,6 +17,12 @@ func main() {
 		"jq":         "1",
 		"xmlstarlet": "1",
 		"turbopump":  "1",
+	}
+	if raw, ok := os.LookupEnv("MISE_INJECTOR_REQUIRED"); ok {
+		err := json.Unmarshal([]byte(raw), &required)
+		if err != nil {
+			die(err)
+		}
 	}
 	var path string
 	if len(os.Args) < 2 {
