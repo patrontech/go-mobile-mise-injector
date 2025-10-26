@@ -60,7 +60,6 @@ func main() {
 	if err != nil {
 		die(err)
 	}
-	fmt.Println(cfg)
 }
 
 func die(err error) {
